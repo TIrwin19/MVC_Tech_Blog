@@ -9,7 +9,7 @@ module.exports = {
       const allComments = await Comment.findAll({include: User})
       const allCommentsObj = allComments.map(obj => obj.get({plain: true}))
 
-      console.log(allCommentsObj)
+      // console.log(allCommentsObj)
       const user = req.session.user_id
 
       if (!user) {

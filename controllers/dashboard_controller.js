@@ -28,7 +28,6 @@ module.exports = {
         { title, content },
         { where: { id: postId } }
       )
-      console.log(postId)
 
       res.redirect('/dashboard')
 
