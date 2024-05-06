@@ -30,7 +30,10 @@ app.use(session({
     store: new SequelizeStore({
         db: client,
     }),
-    // cookie: { secure: true }
+    cookie: { 
+        maxAge: 180000,
+        // secure: true
+    }
 }))
 
 app.use('/', routes)

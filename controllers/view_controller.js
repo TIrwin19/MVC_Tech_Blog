@@ -12,7 +12,7 @@ module.exports = {
           }
         ]})
       const allPostsObj = allPosts.map(obj => obj.get({ plain: true }))
-      console.log(allPostsObj[0].comments[0].user.username)
+      // console.log(allPostsObj[0].comments[0].user.username)
       // const allComments = await Comment.findAll({include: User})
       // const allCommentsObj = allComments.map(obj => obj.get({plain: true}))
 
