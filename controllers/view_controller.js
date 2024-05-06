@@ -117,18 +117,19 @@ module.exports = {
       href2: '/login'
     })
   },
+
   logout(req, res) {
-    req.session.user_id = null
-    res.render('landing', {
-      title: 'Home',
-      href1: '/',
-      link2: 'Login',
-      href2: '/login',
-      link3: 'Register',
-      href3: '/register',
-      link4: 'Dashboard',
-      href4: '/dashboard'
-    })
+    req.session.destroy()
+    // res.render('/', {
+    //   title: 'Home',
+    //   href1: '/',
+    //   link2: 'Login',
+    //   href2: '/login',
+    //   link3: 'Register',
+    //   href3: '/register',
+    //   link4: 'Dashboard',
+    //   href4: '/dashboard'
+    // })
     res.redirect('/')
   }
 }
