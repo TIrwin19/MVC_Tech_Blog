@@ -3,19 +3,26 @@ const { User, Post, Comment } = require('../models')
 module.exports = {
   async landingView(req, res) {
     try {
-      const allPosts = await Post.findAll({ include: [{model:User}, {model: Comment}]})
+      const allPosts = await Post.findAll({ 
+        include: [
+          {model: User}, 
+          {
+            model: Comment,
+            include: User
+          }
+        ]})
       const allPostsObj = allPosts.map(obj => obj.get({ plain: true }))
-      console.log(allPostsObj)
+      console.log(allPostsObj[0].comments[0].user.username)
       // const allComments = await Comment.findAll({include: User})
       // const allCommentsObj = allComments.map(obj => obj.get({plain: true}))
 
-      allPostsObj.forEach(post => {
-        post.comments.forEach(async comment => {
-          const user = await User.findByPk(comment.user_id)
-          const userComment = user.username
-          comment.username = userComment
-        })
-      })
+      // allPostsObj.forEach(post => {
+      //   post.comments.forEach(async comment => {
+      //     const user = await User.findByPk(comment.user_id)
+      //     const userComment = user.username
+      //     comment.username = userComment
+      //   })
+      // })
 
       // console.log(allCommentsObj)
       const user = req.session.user_id
