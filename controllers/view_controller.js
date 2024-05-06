@@ -3,11 +3,19 @@ const { User, Post, Comment } = require('../models')
 module.exports = {
   async landingView(req, res) {
     try {
-      const allPosts = await Post.findAll({ include: User })
+      const allPosts = await Post.findAll({ include: [{model:User}, {model: Comment}]})
       const allPostsObj = allPosts.map(obj => obj.get({ plain: true }))
+      console.log(allPostsObj)
+      // const allComments = await Comment.findAll({include: User})
+      // const allCommentsObj = allComments.map(obj => obj.get({plain: true}))
 
-      const allComments = await Comment.findAll({include: User})
-      const allCommentsObj = allComments.map(obj => obj.get({plain: true}))
+      allPostsObj.forEach(post => {
+        post.comments.forEach(async comment => {
+          const user = await User.findByPk(comment.user_id)
+          const userComment = user.username
+          comment.username = userComment
+        })
+      })
 
       // console.log(allCommentsObj)
       const user = req.session.user_id
@@ -16,7 +24,7 @@ module.exports = {
         return res.render('landing', {
           title: 'Home',
           posts: allPostsObj,
-          comments: allCommentsObj,
+          // username: userComment,
           href1: '/',
           link2: 'Login',
           href2: '/login',
@@ -31,7 +39,7 @@ module.exports = {
         title: 'Home',
         user: user,
         posts: allPostsObj,
-        comments: allCommentsObj,
+        // comments: allCommentsObj,
         href1: '/',
         link2: 'Logout',
         href2: '/logout',

@@ -1,62 +1,59 @@
-<main>
-  {{#if user}}
+{{#if user}}
 
-    {{#each posts}}
-      <div class="card m-3">
-        <div class="card-header">
-          {{this.user.username}}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{this.title}}</h5>
-          <p class="card-text">{{this.content}}</p>
-        </div>
-        <div class="card-footer py-1 d-flex justify-content-between dropdown">
-          {{this.createdAt}}
-          <button type="button" class="btn btn-secondary dropdown-toggle p-1" data-bs-toggle="dropdown" aria-expanded="true"
-            data-bs-auto-close="outside">
-            Comment
-          </button>
-          <form class="dropdown-menu p-4 w-75" action="/comment" method="POST">
-            <div class="mb-3">
-              <label for="comment" class="form-label">Comment</label>
-              <textarea type="text" name="comment" class="form-control" id="comment" placeholder="Type your comment here"></textarea>
-              <input type="hidden" name="postId" value="{{this.id}}">
-            </div>
-            <button type="submit" class="btn btn-primary">Add Comment</button>
-          </form>
-        </div>
-        {{#each comments}}
-          <div class="m-3">
-            <p class="card-text">{{this.comment}}</p>
-            <p class="card-text">-{{this.user.username}} {{this.createdAt}}</p>
-          </div>
-        {{/each}}
+  {{#each posts}}
+    <div class="card m-3">
+      <div class="card-header">
+        {{this.user.username}}
       </div>
-    {{/each}}
-
-  {{else}}
-
-    {{#each posts}}
-      <div class="card m-3">
-        <div class="card-header">
-          {{this.user.username}}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{this.title}}</h5>
-          <p class="card-text">{{this.content}}</p>
-        </div>
-        <div class="card-footer py-1">
-          {{this.createdAt}}
-        </div>
-        {{#each comments}}
-          <div class="m-3">
-            <p class="card-text">{{this.comment}}</p>
-            <p class="card-text">-{{this.user.username}} {{this.createdAt}}</p>
-          </div>
-        {{/each}}
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.content}}</p>
       </div>
-    {{/each}}
+      <div class="card-footer py-1 d-flex justify-content-between dropdown">
+        {{this.createdAt}}
+        <button type="button" class="btn btn-secondary dropdown-toggle p-1" data-bs-toggle="dropdown" aria-expanded="true"
+          data-bs-auto-close="outside">
+          Comment
+        </button>
+        <form class="dropdown-menu p-4 w-75" action="/comment" method="POST">
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea type="text" name="comment" class="form-control" id="comment" placeholder="Type your comment here"></textarea>
+            <input type="hidden" name="postId" value="{{this.id}}">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+      </div>
+      {{#each comments}}
+        <div class="m-3">
+          <p class="card-body">{{this.comment}}</p>
+          <p class="card-text">-{{this.username}} | {{this.createdAt}}</p>
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
 
-  {{/if}}
+{{else}}
 
-</main>
+  {{#each posts}}
+    <div class="card m-3">
+      <div class="card-header">
+        {{this.user.username}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.content}}</p>
+      </div>
+      <div class="card-footer py-1">
+        {{this.createdAt}}
+      </div>
+      {{#each comments}}
+        <div class="m-3">
+          <p class="card-text">{{this.comment}}</p>
+          <p class="card-text">-{{this.username}} | {{this.createdAt}}</p>
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+
+{{/if}}
