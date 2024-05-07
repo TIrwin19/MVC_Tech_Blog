@@ -4,7 +4,7 @@ const client = require('../config/connections')
 const User = require('./user')
 
 class Post extends Model{}
-
+//Post model used to defining table column
 Post.init(
   {
     id: {
