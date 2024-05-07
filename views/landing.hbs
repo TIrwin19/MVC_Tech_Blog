@@ -26,12 +26,18 @@
           <button type="submit" class="btn btn-primary">Add Comment</button>
         </form>
       </div>
-      {{#each comments}}
-        <div class="m-3 border-top border-light-subtle my-auto">
-          <p class="card-title mt-2">{{this.comment}}</p>
-          <p class="card-text mb-2" style="font-size: .75rem;">-{{this.user.username}} | {{this.createdAt}}</p>
+      {{#if comments}}
+        <div style="overflow-y: scroll; height: 10rem">
+          {{#each comments}}
+            <div class="m-3 border-top border-light-subtle my-auto">
+              <p class="card-text mt-2">{{this.comment}}</p>
+              <p class="card-text mb-2" style="font-size: .75rem;">-{{this.user.username}} | {{this.createdAt}}</p>
+            </div>
+          {{/each}}
         </div>
-      {{/each}}
+      {{else}}
+        <div></div>
+      {{/if}}
     </div>
   {{/each}}
 
@@ -49,12 +55,18 @@
       <div class="card-footer py-1">
         <p class="my-auto" style="font-size: .75rem;">{{this.createdAt}}</p>
       </div>
-      {{#each comments}}
+      {{#if comments}}
+      <div style="overflow-y: scroll; height: 10rem">
+        {{#each comments}}
         <div class="m-3 border-top border-light-subtle my-auto">
           <p class="card-text mt-2">{{this.comment}}</p>
           <p class="card-text mb-2" style="font-size: .75rem;">-{{this.user.username}} | {{this.createdAt}}</p>
         </div>
-      {{/each}}
+        {{/each}}
+      </div>
+      {{else}}
+      <div></div>
+      {{/if}}
     </div>
   {{/each}}
 
