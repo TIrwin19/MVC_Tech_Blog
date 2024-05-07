@@ -5,7 +5,7 @@ const Post = require('./blog_post')
 const User = require('./user')
 
 class Comment extends Model{}
-
+//Model defines columns for comment table
 Comment.init(
   {
     id: {
