@@ -39,7 +39,7 @@
   {{!-- Only displays to non-logged in users --}}
   {{#each posts}}
     <div class="card m-3">
-      <div class="card-header">
+      <div class="card-header fs-4">
         {{this.user.username}}
       </div>
       <div class="card-body">
@@ -47,12 +47,12 @@
         <p class="card-text">{{this.content}}</p>
       </div>
       <div class="card-footer py-1">
-        {{this.createdAt}}
+        <p class="my-auto" style="font-size: .75rem;">{{this.createdAt}}</p>
       </div>
       {{#each comments}}
-        <div class="m-3">
-          <p class="card-text">{{this.comment}}</p>
-          <p class="card-text">-{{this.user.username}} | {{this.createdAt}}</p>
+        <div class="m-3 border-top border-light-subtle my-auto">
+          <p class="card-text mt-2">{{this.comment}}</p>
+          <p class="card-text mb-2" style="font-size: .75rem;">-{{this.user.username}} | {{this.createdAt}}</p>
         </div>
       {{/each}}
     </div>
