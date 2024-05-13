@@ -29,7 +29,7 @@
       <p class="card-text">{{this.content}}</p>
     </div>
     <div class="card-footer py-1 d-flex justify-content-between dropdown">
-      {{this.createdAt}}
+      <p class="my-auto">{{this.createdAt}}</p>
         <div class="d-flex">
           <button type="button" class="btn btn-secondary dropdown-toggle mx-1" data-bs-toggle="dropdown"
             aria-expanded="true" data-bs-auto-close="outside">
@@ -42,7 +42,7 @@
               <h2>Update Post</h2>
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control w-25" id="title">
+                <input type="text" name="title" class="form-control w-25" id="title" required>
               </div>
               <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
